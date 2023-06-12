@@ -14,7 +14,6 @@ from models.api import (
     UpsertResponse,
 )
 from datastore.factory import get_datastore
-from services.file import get_document_from_file
 
 from starlette.responses import FileResponse
 
