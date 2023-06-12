@@ -2,14 +2,9 @@
 name = "jp-chatgpt-plugin"
 version = "0.1.0"
 description = ""
-authors = ["a@b.de"]
+authors = ["A B <a@b.de>"]
 readme = "README.md"
 packages = [{include = "server"}]
-
-[[tool.poetry.source]]
-name = "azure-sdk-dev"
-url = "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-python/pypi/simple/"
-secondary = true
 
 [tool.poetry.dependencies]
 python = "^3.10"

@@ -21,6 +21,8 @@ from starlette.responses import FileResponse
 from models.models import DocumentMetadata, Source
 from fastapi.middleware.cors import CORSMiddleware
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 
 app = FastAPI()
 
