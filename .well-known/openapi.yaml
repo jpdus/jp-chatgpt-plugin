@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Retrieval Plugin API
-  description: A retrieval API for querying and filtering documents based on natural language queries and metadata
+  description: Eine retrieval API um mit Queries in natürlicher Sprache und Metdata-Filtern auf Dokumente und gespeicherte Informationen zuzugreifen
   version: 1.0.0
 servers:
   - url: https://your-app-url.com
@@ -56,8 +56,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
-      security:
-        - HTTPBearer: []
+
 components:
   schemas:
     Document:
@@ -270,7 +269,4 @@ components:
         type:
           title: Error Type
           type: string
-  securitySchemes:
-    HTTPBearer:
-      type: http
-      scheme: bearer
+

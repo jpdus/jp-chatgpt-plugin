@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_model": "retrieval",
   "name_for_human": "Retrieval Plugin",
-  "description_for_model": "Plugin for searching through the user's documents (such as files, emails, and more) to find answers to questions and retrieve relevant information. Use it whenever a user asks something that might be found in their personal information.",
-  "description_for_human": "Search through your documents.",
+  "description_for_model": "Plugin zur Suche in den Dokumenten des Nutzers (wie Dateien, E-Mails und mehr), um Antworten auf Fragen zu finden und relevante Informationen abzurufen. Verwende es immer dann, wenn ein Benutzer etwas fragt, das in seinen persönlichen Informationen gefunden werden könnte, oder Dich bittet, Informationen für später zu speichern. Enthält u.a. Infos zur Gründung, Businessplan etc. und zu Python Bibliotheken wie Langchain. Fast alle Informationen sind auf Deutsch; einige Informationen (insbesondere zu Code-Themen) sind auf Englisch.",
+  "description_for_human": "JP ChatGPT Plugin.",
   "auth": {
     "type": "none"
   },
