@@ -3,13 +3,39 @@ info:
   title: Retrieval Plugin API
   description: A retrieval API for querying and filtering documents based on natural language queries and metadata
   version: 1.0.0
-  servers:
-    - url: https://your-app-url.com
+servers:
+  - url: https://your-app-url.com
 paths:
+  /upsert:
+    post:
+      summary: Upsert
+      description: Speichert Chat-Informationen. Akzeptiert ein Array von Dokumenten mit Text (mögliche Fragen + Gesprächstext), Metadaten (Quelle 'chat' und Zeitstempel, keine ID, da diese generiert wird). Lass den Nutzer vor dem Speichern bestätigen und frage ggf. nach mehr Details/Kontext.
+      operationId: upsert_upsert_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpsertRequest"
+        required: true
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpsertResponse"
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+      security:
+        - HTTPBearer: []
   /query:
     post:
       summary: Query
-      description: Accepts search query objects array each with query and optional filter. Break down complex questions into sub-questions. Refine results by criteria, e.g. time / source, don't do this often. Split queries if ResponseTooLargeError occurs.
+      description: Akzeptiert ein Array von search query objects, jeweils mit query und optionalem filter. Teile komplexe Fragen in Teilfragen auf. Du kannst die Ergebnisse nach Kriterien, z. B. Zeit / Quelle filtern, allerdings nicht oft. Teile die Queries auf, wenn ein ResponseTooLargeError auftritt.
       operationId: query_query_post
       requestBody:
         content:
@@ -34,6 +60,20 @@ paths:
         - HTTPBearer: []
 components:
   schemas:
+    Document:
+      title: Document
+      required:
+        - text
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+        text:
+          title: Text
+          type: string
+        metadata:
+          $ref: "#/components/schemas/DocumentMetadata"
     DocumentChunkMetadata:
       title: DocumentChunkMetadata
       type: object
@@ -79,6 +119,24 @@ components:
         score:
           title: Score
           type: number
+    DocumentMetadata:
+      title: DocumentMetadata
+      type: object
+      properties:
+        source:
+          $ref: "#/components/schemas/Source"
+        source_id:
+          title: Source Id
+          type: string
+        url:
+          title: Url
+          type: string
+        created_at:
+          title: Created At
+          type: string
+        author:
+          title: Author
+          type: string
     DocumentMetadataFilter:
       title: DocumentMetadataFilter
       type: object
@@ -169,6 +227,28 @@ components:
         - chat
       type: string
       description: An enumeration.
+    UpsertRequest:
+      title: UpsertRequest
+      required:
+        - documents
+      type: object
+      properties:
+        documents:
+          title: Documents
+          type: array
+          items:
+            $ref: "#/components/schemas/Document"
+    UpsertResponse:
+      title: UpsertResponse
+      required:
+        - ids
+      type: object
+      properties:
+        ids:
+          title: Ids
+          type: array
+          items:
+            type: string
     ValidationError:
       title: ValidationError
       required:

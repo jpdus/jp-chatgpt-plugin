@@ -1,8 +1,12 @@
-# ChatGPT Retrieval Plugin
+# JP ChatGPT  Plugin
 
-> **Join the [ChatGPT plugins waitlist here](https://openai.com/waitlist/plugins)!**
+see e.g.
 
-Find an example video of a Retrieval Plugin that has access to the UN Annual Reports from 2018 to 2022 [here](https://cdn.openai.com/chat-plugins/retrieval-gh-repo-readme/Retrieval-Final.mp4).
+https://github.com/jerryjliu/llama_index/blob/main/examples/chatgpt_plugin/ChatGPT_Retrieval_Plugin_Upload.ipynb
+
+
+
+# OLD README
 
 ## Introduction
 
