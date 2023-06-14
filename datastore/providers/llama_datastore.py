@@ -3,7 +3,7 @@ import os
 from typing import Dict, List, Optional, Type
 from loguru import logger
 from datastore.datastore import DataStore
-from models.models import DocumentChunk, DocumentChunkMetadata, DocumentChunkWithScore, DocumentMetadataFilter, Query, QueryResult, QueryWithEmbedding
+from models.models import DocumentChunk, DocumentChunkMetadata, DocumentMetadataFilter, Query, QueryResult, QueryWithEmbedding
 
 from llama_index.indices.base import BaseGPTIndex
 from llama_index.indices.vector_store.base import GPTVectorStoreIndex
@@ -79,17 +79,16 @@ def _query_with_embedding_to_query_bundle(query: QueryWithEmbedding) -> QueryBun
         embedding=query.embedding,
     )
 
-def _source_node_to_doc_chunk_with_score(node_with_score: NodeWithScore) -> DocumentChunkWithScore:
+def _source_node_to_doc_chunk_with_score(node_with_score: NodeWithScore) -> DocumentChunk:
     node = node_with_score.node
     if node.extra_info is not None:
         metadata = DocumentChunkMetadata(**node.extra_info)
     else:
         metadata = DocumentChunkMetadata()
 
-    return DocumentChunkWithScore(
+    return DocumentChunk(
         id=node.doc_id,
         text=node.text,
-        score=node_with_score.score if node_with_score.score is not None else 1.,
         metadata=metadata,
     )
 

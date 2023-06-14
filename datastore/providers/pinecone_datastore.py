@@ -9,7 +9,6 @@ from datastore.datastore import DataStore
 from models.models import (
     DocumentChunk,
     DocumentChunkMetadata,
-    DocumentChunkWithScore,
     DocumentMetadataFilter,
     QueryResult,
     QueryWithEmbedding,
@@ -136,13 +135,14 @@ class PineconeDataStore(DataStore):
                 logger.error(f"Error querying index: {e}")
                 raise e
 
-            query_results: List[DocumentChunkWithScore] = []
+            query_results: List[DocumentChunk] = []
             for result in query_response.matches:
                 score = result.score
                 metadata = result.metadata
                 # Remove document id and text from metadata and store it in a new variable
+                # Added context for pinecone hybrid search
                 metadata_without_text = (
-                    {key: value for key, value in metadata.items() if key != "text"}
+                    {key: value for key, value in metadata.items() if key not in ("text", "context")}
                     if metadata
                     else None
                 )
@@ -155,11 +155,10 @@ class PineconeDataStore(DataStore):
                 ):
                     metadata_without_text["source"] = None
 
-                # Create a document chunk with score object with the result data
-                result = DocumentChunkWithScore(
+                # Create a document chunk with the result data
+                result = DocumentChunk(
                     id=result.id,
-                    score=score,
-                    text=metadata["text"] if metadata and "text" in metadata else None,
+                    text=metadata["text"] if metadata and "text" in metadata else metadata["context"], #statt None, context bei hybrid index
                     metadata=metadata_without_text,
                 )
                 query_results.append(result)

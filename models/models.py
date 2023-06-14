@@ -7,6 +7,8 @@ class Source(str, Enum):
     email = "email"
     file = "file"
     chat = "chat"
+    notion = "notion"
+    code = "code"
 
 
 class DocumentMetadata(BaseModel):
@@ -28,8 +30,8 @@ class DocumentChunk(BaseModel):
     embedding: Optional[List[float]] = None
 
 
-class DocumentChunkWithScore(DocumentChunk):
-    score: float
+#class DocumentChunkWithScore(DocumentChunk):
+#    score: float
 
 
 class Document(BaseModel):
@@ -63,4 +65,4 @@ class QueryWithEmbedding(Query):
 
 class QueryResult(BaseModel):
     query: str
-    results: List[DocumentChunkWithScore]
+    results: List[DocumentChunk]

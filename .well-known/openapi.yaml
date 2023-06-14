@@ -94,30 +94,6 @@ components:
         document_id:
           title: Document Id
           type: string
-    DocumentChunkWithScore:
-      title: DocumentChunkWithScore
-      required:
-        - text
-        - metadata
-        - score
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-        text:
-          title: Text
-          type: string
-        metadata:
-          $ref: "#/components/schemas/DocumentChunkMetadata"
-        embedding:
-          title: Embedding
-          type: array
-          items:
-            type: number
-        score:
-          title: Score
-          type: number
     DocumentMetadata:
       title: DocumentMetadata
       type: object
@@ -217,13 +193,15 @@ components:
           title: Results
           type: array
           items:
-            $ref: "#/components/schemas/DocumentChunkWithScore"
+            $ref: "#/components/schemas/DocumentChunk"
     Source:
       title: Source
       enum:
         - email
         - file
         - chat
+        - notion
+        - code
       type: string
       description: An enumeration.
     UpsertRequest:
