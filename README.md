@@ -17,7 +17,8 @@ https://github.com/jerryjliu/llama_index/blob/main/examples/chatgpt_plugin/ChatG
 * Notion Update Code aus jpllm Notebook kopieren (oder über jpllm importieren?)
 * API Schema verstehen (auch für Funktionen über API)
 * Langchain Dokumentation embedden/einfuegen
-
+* Lass GPT nach Notion schreiben mit neuem Endpoint
+* (und ggf Stichwort Suche? Oder alternativ?)
 
 
 ------
