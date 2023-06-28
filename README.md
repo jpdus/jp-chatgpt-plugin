@@ -4,7 +4,11 @@ see e.g.
 
 https://github.com/jerryjliu/llama_index/blob/main/examples/chatgpt_plugin/ChatGPT_Retrieval_Plugin_Upload.ipynb
 
+## Run
+` poetry run dev `
+
 ## Status
+
 
 * Score entfernt
 * Context statt Text feld für Pinecone bei Hybrid Index
